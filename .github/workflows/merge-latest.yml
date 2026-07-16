@@ -65,7 +65,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.resolve.outputs.tag }}
-          ALLOW_PARTIAL: ${{ inputs.allow_partial || 'false' }}
+          ALLOW_PARTIAL: ${{ github.event_name == 'release' || inputs.allow_partial }}
         run: |
           mkdir -p /tmp/manifests
           HAVE_DARWIN=false
